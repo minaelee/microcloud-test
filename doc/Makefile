@@ -34,7 +34,7 @@ help:
 
 integrate:
 	# Pull the other repositories
-	cd integration/ && ( git -C lxd fetch || git clone https://github.com/canonical/lxd )
+	cd integration/ && ( git -C lxd fetch || git clone https://github.com/minaelee/lxd-playground lxd )
 	git -C integration/lxd reset --hard $(LXDVERSION)
 
 	cd integration/ && ( git -C microceph fetch || git clone https://github.com/canonical/microceph )
