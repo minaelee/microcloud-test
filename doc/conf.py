@@ -214,4 +214,5 @@ def get_contributors_for_file(github_url, github_folder, pagename, page_source_s
     return sorted_contributors_list
 
 html_context['get_contribs'] = get_contributors_for_file
+
 #############################################################

@@ -6,6 +6,8 @@ relatedlinks: https://snapcraft.io/microcloud
 (home)=
 # MicroCloud
 
+This is a test.
+
 MicroCloud is a collection of services that allows you to deploy your own fully functional cloud in minutes.
 The MicroCloud snap automatically configures the different components across a set of servers, making it possible to set up a complete cluster by running a single command on one of the machines.
 
