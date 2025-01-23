@@ -177,3 +177,7 @@ ul.more-links-dropdown {
     margin-left: calc(50% - 41em);
   }
 }
+
+.header-extra {
+  text-align: center;
+}

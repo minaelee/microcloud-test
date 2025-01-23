@@ -21,3 +21,9 @@ elif project == "MicroOVN":
 
 # Include integrated tag
 custom_tags.append('integrated')
+
+
+#testing
+if project == "LXD":
+    extra_header_pages = ["tutorial/first_steps", "index", "foo-test"]
+    html_context.update ({"extra_header_pages": extra_header_pages})
