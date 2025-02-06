@@ -25,5 +25,5 @@ custom_tags.append('integrated')
 
 #testing
 if project == "LXD":
-    extra_header_pages = ["tutorial/first_steps", "index", "foo-test"]
+    extra_header_pages = ["tutorial/first_steps"]
     html_context.update ({"extra_header_pages": extra_header_pages})
