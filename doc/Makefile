@@ -9,7 +9,7 @@
 
 current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
-LXDVERSION       = origin/main
+LXDVERSION       = origin/stable-5.21
 MICROCEPHVERSION = origin/main
 MICROOVNVERSION  = origin/main
 
