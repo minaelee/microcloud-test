@@ -10,7 +10,7 @@
 current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 LXDVERSION       = origin/stable-5.21
-MICROCEPHVERSION = origin/main
+MICROCEPHVERSION = origin/squid-stable
 MICROOVNVERSION  = origin/main
 
 # Put it first so that "make" without argument is like "make help".
