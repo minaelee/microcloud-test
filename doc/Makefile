@@ -10,7 +10,8 @@
 current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 LXDVERSION       = origin/stable-5.21
-MICROCEPHVERSION = origin/squid-stable
+# MicroCeph squid/stable is a tag, not a branch
+MICROCEPHVERSION = squid/stable-test-tag
 MICROOVNVERSION  = origin/main
 
 # Put it first so that "make" without argument is like "make help".
@@ -37,8 +38,8 @@ integrate:
 	cd integration/ && ( git -C lxd fetch || git clone https://github.com/minaelee/lxd-playground lxd )
 	git -C integration/lxd reset --hard $(LXDVERSION)
 
-	cd integration/ && ( git -C microceph fetch || git clone https://github.com/minaelee/microceph-playground microceph )
-	git -C integration/microceph reset --hard $(MICROCEPHVERSION)
+	cd integration/ && ( git -C microceph fetch || git clone --branch $(MICROCEPHVERSION) --depth 1 https://github.com/minaelee/microceph-playground microceph )
+	git -C integration/microceph checkout tags/$(MICROCEPHVERSION)
 
 	cd integration/ && ( git -C microovn fetch || git clone https://github.com/minaelee/microovn-playground microovn )
 	git -C integration/microovn reset --hard $(MICROOVNVERSION)
