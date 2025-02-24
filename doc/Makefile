@@ -9,6 +9,7 @@
 
 current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
+PATH_PREFIX      = /en/v2-edge/
 LXDVERSION       = origin/stable-5.21
 # MicroCeph squid/stable is a tag, not a branch
 MICROCEPHVERSION = squid/stable-test-tag
