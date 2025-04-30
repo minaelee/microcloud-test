@@ -19,6 +19,8 @@ MicroCloud is aimed at edge computing, and anyone in need of a small-scale priva
 
 ---
 
+This is a test.
+
 ## How to use this documentation
 
 Since MicroCloud is a collection of services, this documentation consists of four different documentation sets.
