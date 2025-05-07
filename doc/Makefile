@@ -93,7 +93,7 @@ html-rtd:
 
 # `spelling` checks only the MicroCloud docs.
 spelling: clean-doc microcloud
-    SINGLE_BUILD=False $(MAKE) -f Makefile.sp sp-spellcheck
+	$(MAKE) -f Makefile.sp sp-spellcheck
 
 # `microcloud` builds only the MicroCloud docs, as a stand-alone doc set.
 microcloud:
