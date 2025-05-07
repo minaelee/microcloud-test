@@ -35,7 +35,7 @@ var Debug bool
 var Verbose bool
 
 type cmdGlobal struct {
-	cmd *cobra.Command //nolint:structcheck,unused // FIXME: Remove the nolint flag when this is in use.
+	cmd *cobra.Command //nolint:unused // FIXME: Remove the nolint flag when this is in use.
 
 	flagHelp    bool
 	flagVersion bool
@@ -51,6 +51,7 @@ type cmdDaemon struct {
 	flagHeartbeatInterval time.Duration
 }
 
+// Command returns the main microcloudd command.
 func (c *cmdDaemon) Command() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "microcloudd",
@@ -63,6 +64,7 @@ func (c *cmdDaemon) Command() *cobra.Command {
 	return cmd
 }
 
+// Run runs the main microcloudd command.
 func (c *cmdDaemon) Run(cmd *cobra.Command, args []string) error {
 	if len(args) != 0 {
 		return cmd.Help()
