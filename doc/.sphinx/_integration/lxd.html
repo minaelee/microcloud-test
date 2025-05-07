@@ -7,7 +7,8 @@
       <li>
         <a class="p-logo" href="{{ pathto(root_doc) if pathto(root_doc) != '#' }}{{ microcloud_path }}/" aria-current="page">
           <img src="{{ pathto(root_doc) if pathto(root_doc) != '#' }}{{ microcloud_tag }}" alt="Logo" class="p-logo-image">
-          <div class="p-logo-text p-heading--4">MicroCloud</div>
+          <div class="p-logo-text p-heading--4">MicroCloud
+          </div>
         </a>
       </li>
 
@@ -36,14 +37,7 @@
       </li>
 
 
-      
+
     </ul>
   </div>
-  {% if pagename in extra_header_pages %}
-  <!-- Add your conditional HTML here -->
-  <div class="header-extra p-navigation sticky-header">
-    <p>This is extra header content that only shows up for pages specifically listed in add_config.py.</p>
-  </div>
-  {% endif %}
-
 </header>

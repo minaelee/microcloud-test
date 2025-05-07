@@ -9,11 +9,11 @@
 
 current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
+# Set the path prefix and MicroCloud component versions corresponding to each MicroCloud docs version
 PATH_PREFIX      = /en/v2-edge/
 LXDVERSION       = origin/stable-5.21
-# MicroCeph squid/stable is a tag, not a branch
-MICROCEPHVERSION = squid/stable-test-tag
-MICROOVNVERSION  = origin/main
+MICROCEPHVERSION = 1200ba77f2320be2acec45939f4b96a8ac4f0722 # origin/main right after squid LTS.
+MICROOVNVERSION  = origin/branch-24.03
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -36,11 +36,11 @@ help:
 
 integrate:
 	# Pull the other repositories
-	cd integration/ && ( git -C lxd fetch || git clone https://github.com/minaelee/lxd-playground lxd )
+	cd integration/ && ( git -C lxd fetch || git clone https://github.com/canonical/lxd )
 	git -C integration/lxd reset --hard $(LXDVERSION)
 
 	cd integration/ && ( git -C microceph fetch || git clone --branch $(MICROCEPHVERSION) --depth 1 https://github.com/minaelee/microceph-playground microceph )
-	git -C integration/microceph checkout tags/$(MICROCEPHVERSION)
+	git -C integration/microceph reset --hard $(MICROCEPHVERSION)
 
 	cd integration/ && ( git -C microovn fetch || git clone https://github.com/minaelee/microovn-playground microovn )
 	git -C integration/microovn reset --hard $(MICROOVNVERSION)
@@ -91,7 +91,6 @@ html-rtd:
 	PATH_PREFIX=$(PATH_PREFIX) $(MAKE) -C integration/microovn/docs/ html BUILDDIR=$(READTHEDOCS_OUTPUT)/html/microovn
 	PATH_PREFIX=$(PATH_PREFIX) $(MAKE) -f Makefile.sp sp-html BUILDDIR=$(READTHEDOCS_OUTPUT)/html/microcloud
 
-
 # `spelling` checks only the MicroCloud docs.
 spelling: clean-doc microcloud
 	$(MAKE) -f Makefile.sp sp-spellcheck
@@ -99,6 +98,10 @@ spelling: clean-doc microcloud
 # `microcloud` builds only the MicroCloud docs, as a stand-alone doc set.
 microcloud:
 	$(MAKE) -f Makefile.sp sp-html SINGLE_BUILD=True
+
+.PHONY: run
+run:
+	$(MAKE) -f Makefile.sp sp-run LOCAL_SPHINX_BUILD=True ADDPREREQS='gitpython pyyaml' SPHINXOPTS="--ignore './index.html' -c . -d .sphinx/.doctrees -j auto"
 
 # `serve` rebuilds the integrated docs and serves them.
 serve: html
