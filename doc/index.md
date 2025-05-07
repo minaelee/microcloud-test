@@ -6,7 +6,7 @@ relatedlinks: "[Install&#32;MicroCloud&#32;on&#32;Linux&#32;|&#32;Snap&#32;Store
 (home)=
 # MicroCloud
 
-Deploy a scalable, low-touch cloud platform in minutes with MicroCloud.
+Deploy a scalable, low-touch cloud platform in minutes with MicroCloud. Test.
 
 MicroCloud creates a lightweight cluster of machines that operates as an open source private cloud. It combines LXD for virtualization, MicroCeph for distributed storage, and MicroOVN for networking—all automatically configured by the [MicroCloud snap](https://snapcraft.io/microcloud) for reproducible, reliable deployments.
 
