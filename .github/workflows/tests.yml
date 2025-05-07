@@ -1,0 +1,36 @@
+name: Tests
+on:
+  push:
+    branches:
+      - v2-edge
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CGO_CFLAGS: -I/home/runner/go/deps/dqlite/include/
+  CGO_LDFLAGS: -L/home/runner/go/deps/dqlite/.libs/
+  LD_LIBRARY_PATH: /home/runner/go/deps/dqlite/.libs/
+  CGO_LDFLAGS_ALLOW: (-Wl,-wrap,pthread_create)|(-Wl,-z,now)
+  # Use the github.workspace variable to adapt the cover directory path based on the used runner.
+  GOCOVERDIR: ${{ ( github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' ) && format('{0}/cover', github.workspace) || '' }}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    # Make sure bash is always invoked with `-eo pipefail`
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+    shell: bash
+
+jobs:
+  doc-tests:
+    name: Documentation
+    uses: canonical/documentation-workflows/.github/workflows/documentation-checks.yaml@main
+    with:
+      working-directory: './doc'
+      makefile: 'Makefile'
