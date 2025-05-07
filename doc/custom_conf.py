@@ -82,8 +82,8 @@ html_context = {
 
     # ru-fu: we're using different Discourses
     'discourse_prefix': {
+        'ubuntu': 'https://discourse.ubuntu.com/t/',
         'lxc': 'https://discuss.linuxcontainers.org/t/',
-        'ubuntu': 'https://discourse.ubuntu.com/t/'
     },
 
     # Change to the Mattermost channel you want to link to
@@ -135,10 +135,13 @@ slug = ""
 # NOTE: If this variable is not defined, set to None, or the dictionary is empty,
 # the sphinx_reredirects extension will be disabled.
 redirects = {
-    'tutorial/index': 'get_started/'}
+    'tutorial/index': 'get_started/',
+    'explanation/initialisation': '../initialization',
+    'how-to/initialise': '../initialize'
+}
 
 ############################################################
-### Link checker exceptions
+### Link checker
 ############################################################
 
 # Links to ignore when checking links
@@ -153,6 +156,19 @@ linkcheck_ignore = [
 custom_linkcheck_anchors_ignore_for_url = [
     r'https://snapcraft\.io/docs/.*'
     ]
+
+# Increase linkcheck rate limit timeout max, default when unset is 300
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-linkcheck_timeout
+linkcheck_rate_limit_timeout = 600
+
+# Increase linkcheck retries, default when unset is 1
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-linkcheck_retries
+linkcheck_retries = 3
+
+# Increase the duration, in seconds, that the linkcheck builder will wait for a response after each hyperlink request.
+# Default when unset is 30
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-linkcheck_timeout
+linkcheck_timeout = 45
 
 ############################################################
 ### Additions to default configuration
@@ -190,7 +206,8 @@ custom_required_modules = []
 
 # Add files or directories that should be excluded from processing.
 custom_excludes = [
-    "integration"
+    "integration",
+    'README.md'
     ]
 
 # Add CSS files (located in .sphinx/_static/)
@@ -233,9 +250,9 @@ if ('SINGLE_BUILD' in os.environ and os.environ['SINGLE_BUILD'] == 'True'):
     }
 elif ('READTHEDOCS' in os.environ) and (os.environ['READTHEDOCS'] == 'True'):
     intersphinx_mapping = {
-        'lxd': ('/en/latest/lxd/', os.environ['READTHEDOCS_OUTPUT'] + 'html/lxd/objects.inv'),
-        'microceph': ('/en/latest/microceph/', os.environ['READTHEDOCS_OUTPUT'] + 'html/microceph/objects.inv'),
-        'microovn': ('/en/latest/microovn/', os.environ['READTHEDOCS_OUTPUT'] + 'html/microovn/objects.inv'),
+        'lxd': (os.environ['PATH_PREFIX'] + 'lxd/', os.environ['READTHEDOCS_OUTPUT'] + 'html/lxd/objects.inv'),
+        'microceph': (os.environ['PATH_PREFIX'] + 'microceph/', os.environ['READTHEDOCS_OUTPUT'] + 'html/microceph/objects.inv'),
+        'microovn': (os.environ['PATH_PREFIX'] + 'microovn/', os.environ['READTHEDOCS_OUTPUT'] + 'html/microovn/objects.inv'),
         'ceph': ('https://docs.ceph.com/en/latest/', None)
     }
 else:

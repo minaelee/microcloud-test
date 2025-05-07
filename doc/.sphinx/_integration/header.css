@@ -177,14 +177,3 @@ ul.more-links-dropdown {
     margin-left: calc(50% - 41em);
   }
 }
-
-.header-extra {
-  text-align: center;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}

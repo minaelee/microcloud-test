@@ -20,7 +20,7 @@ A physical or virtual machine intended for use as a MicroCloud cluster member mu
   - Fixed IP addresses (DHCP not supported)
   - At least two network interfaces per cluster member: one for intra-cluster communication and one for external connectivity to the uplink network
     - Partially or fully disaggregated networking setups require more interfaces; see: {ref}`howto-ceph-networking`
-    - To use a {ref}`dedicated underlay network for OVN traffic <microcloud-networking-underlay>`, an additional interface per cluster member is required
+    - To use a {ref}`dedicated underlay network for OVN traffic <exp-networking-ovn-underlay>`, an additional interface per cluster member is required
   - Uplink network must support both broadcast and multicast
   - Intra-cluster interface must have IPs assigned; external connectivity interface (to uplink) must not have any IPs assigned
 
@@ -84,7 +84,7 @@ For detailed information, see: {ref}`reference-requirements`.
 ```{youtube} https://www.youtube.com/watch?v=M0y0hQ16YuE
 ```
 
-To install MicroCloud, install all required {ref}`snaps` on all machines that you want to include in your cluster.
+To install MicroCloud, install all required {ref}`snaps <reference-requirements-software-snaps>` on all machines that you want to include in your cluster.
 
 To do so, enter the following commands on all machines:
 
@@ -99,6 +99,11 @@ See {ref}`howto-snap` for more information.
 
 If you don't want to use MicroCloud's full functionality, you can install only some of the snaps.
 However, this is not recommended.
+```
+
+```{note}
+It's possible that a required snap is already installed on your machine. For example, it might be a version of Ubuntu that comes with LXD pre-installed.
+In this case, run `sudo snap refresh <snap> --channel=<track>/stable --cohort="+"` to refresh (update) the installed snap.
 ```
 
 After installing the snaps make sure to hold any automatic updates to keep the used snap versions across MicroCloud in sync.
