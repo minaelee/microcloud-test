@@ -94,9 +94,10 @@ func sessionGet(sh *service.Handler, sessionRole types.SessionRole) func(state s
 
 			gw := cloudClient.NewWebsocketGateway(sessionCtx, conn)
 
-			if sessionRole == types.SessionInitiating {
+			switch sessionRole {
+			case types.SessionInitiating:
 				err = handleInitiatingSession(state, sh, gw)
-			} else if sessionRole == types.SessionJoining {
+			case types.SessionJoining:
 				err = handleJoiningSession(state, sh, gw)
 			}
 
@@ -312,7 +313,7 @@ func handleJoiningSession(state state.State, sh *service.Handler, gw *cloudClien
 
 	conf := cloudClient.AuthConfig{
 		HMAC: header,
-		// The certificate of the initiater isn't yet known so we have to skip any TLS verification.
+		// The certificate of the initiator isn't yet known so we have to skip any TLS verification.
 		InsecureSkipVerify: true,
 	}
 

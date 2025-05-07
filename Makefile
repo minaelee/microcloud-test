@@ -1,8 +1,8 @@
-GOMIN=1.22.7
+GOMIN=1.23.7
 GOCOVERDIR ?= $(shell go env GOCOVERDIR)
 GOPATH ?= $(shell go env GOPATH)
 DQLITE_PATH=$(GOPATH)/deps/dqlite
-DQLITE_BRANCH=master
+DQLITE_BRANCH=lts-1.17.x
 
 .PHONY: default
 default: build
@@ -66,7 +66,7 @@ check-system:
 .PHONY: check-static
 check-static:
 ifeq ($(shell command -v golangci-lint 2> /dev/null),)
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$HOME/go/bin
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$HOME/go/bin v2.0.0
 endif
 ifeq ($(shell command -v revive 2> /dev/null),)
 	go install github.com/mgechev/revive@latest
@@ -82,8 +82,13 @@ update-gomod:
 
 	# Static pins
 	go get github.com/canonical/lxd@stable-5.21 # Stay on v2 dqlite and LXD LTS client
+	go get github.com/canonical/microceph@1200ba77f2320be2acec45939f4b96a8ac4f0722 # Right after releasing squid LTS.
+	go get github.com/canonical/microovn@branch-24.03 # 24.03 LTS.
 
 	go mod tidy -go=$(GOMIN)
+
+	# Use the bundled toolchain that meets the minimum go version
+	go get toolchain@none
 
 # Update lxd-generate generated database helpers.
 .PHONY: update-schema
