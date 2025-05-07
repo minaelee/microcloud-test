@@ -39,7 +39,7 @@ integrate:
 	cd integration/ && ( git -C lxd fetch || git clone https://github.com/canonical/lxd )
 	git -C integration/lxd reset --hard $(LXDVERSION)
 
-	cd integration/ && ( git -C microceph fetch || git clone --branch $(MICROCEPHVERSION) --depth 1 https://github.com/minaelee/microceph-playground microceph )
+	cd integration/ && ( git -C microceph fetch || git clone https://github.com/canonical/microceph )
 	git -C integration/microceph reset --hard $(MICROCEPHVERSION)
 
 	cd integration/ && ( git -C microovn fetch || git clone https://github.com/minaelee/microovn-playground microovn )
