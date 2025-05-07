@@ -42,7 +42,7 @@ integrate:
 	cd integration/ && ( git -C microceph fetch || git clone https://github.com/canonical/microceph )
 	git -C integration/microceph reset --hard $(MICROCEPHVERSION)
 
-	cd integration/ && ( git -C microovn fetch || git clone https://github.com/minaelee/microovn-playground microovn )
+	cd integration/ && ( git -C microovn fetch || git clone https://github.com/canonical/microovn )
 	git -C integration/microovn reset --hard $(MICROOVNVERSION)
 	# Create a directory for files to override in MicroCloud docs
 	mkdir -p integration/microcloud/_templates/ integration/microcloud/_static
@@ -93,7 +93,7 @@ html-rtd:
 
 # `spelling` checks only the MicroCloud docs.
 spelling: clean-doc microcloud
-	$(MAKE) -f Makefile.sp sp-spellcheck
+    SINGLE_BUILD=False $(MAKE) -f Makefile.sp sp-spellcheck
 
 # `microcloud` builds only the MicroCloud docs, as a stand-alone doc set.
 microcloud:
