@@ -9,9 +9,6 @@ html_context['microceph_tag'] = "../microceph/_static/tag.png"
 html_context['microovn_path'] = "../microovn"
 html_context['microovn_tag'] = "../microovn/_static/microovn.png"
 
-# Add the search JavaScript file
-custom_html_js_files.append('rtd-search.js')
-
 if project == "LXD":
     html_baseurl = "https://documentation.ubuntu.com/lxd/latest/"
     html_js_files.append('rtd-search.js')
