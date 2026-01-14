@@ -1,7 +1,3 @@
----
-relatedlinks: https://en.wikipedia.org/wiki/Multicast_DNS
----
-
 (explanation-initialization)=
 # About the initialization process
 

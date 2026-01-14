@@ -1,11 +1,5 @@
----
-relatedlinks: https://docs.ovn.org,https://ubuntu.com/blog/data-centre-networking-what-is-ovn,https://en.wikipedia.org/wiki/Virtual_private_cloud
----
-
 (exp-networking)=
 # MicroCloud's networking approach
-
-This page describes a high-level overview of MicroCloud's networking approach, particularly its use of [Open Virtual Network (OVN)](https://www.ovn.org/). It also compares and contrasts MicroCloud networking to [Virtual Private Clouds (VPCs)](https://en.wikipedia.org/wiki/Virtual_private_cloud).
 
 (exp-networking-ovn)=
 ## OVN and MicroCloud

@@ -278,9 +278,6 @@ See {ref}`lxd:cluster-manage-instance` and {ref}`lxd:cluster-evacuate`.
 
      {command}`lxc copy <instance> <remote>`
 
-     ```{tip}
-     See {ref}`lxd:move-instances` for details.
-     ```
  * - Evacuate a cluster member
    - {command}`lxc cluster evacuate <member>`
  * - Restore a cluster member
