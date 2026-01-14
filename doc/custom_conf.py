@@ -44,13 +44,17 @@ html_title = ''
 
 copyright = '%s, %s' % (datetime.date.today().year, author)
 
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
+
+
+
 ## Open Graph configuration - defines what is displayed as a link preview
 ## when linking to the documentation from another website (see https://ogp.me/)
 # The URL where the documentation will be hosted (leave empty if you
 # don't know yet)
 # NOTE: If no ogp_* variable is defined (e.g. if you remove this section) the
 # sphinxext.opengraph extension will be disabled.
-ogp_site_url = 'https://canonical-microcloud.readthedocs-hosted.com/en/latest/'
+ogp_site_url = html_baseurl
 # The documentation website name (usually the same as the product name)
 ogp_site_name = project
 # The URL of an image or logo that is used in the preview
